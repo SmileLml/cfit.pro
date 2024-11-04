@@ -1,0 +1,2 @@
+#每1分钟检测nfs挂载
+#*/1 * * * * cd /var/www/zentao/cli/ && /usr/bin/php ./checkNfs.php >> /var/log/nginx/cronerr.log

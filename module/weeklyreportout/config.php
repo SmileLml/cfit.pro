@@ -1,0 +1,11 @@
+<?php
+$config->weeklyreportout = new stdclass();
+
+$config->weeklyreportout->list = new stdclass();
+$config->weeklyreportout->list->exportFields = 'outreportDate,createdBy,createTime,editedBy,updateTime,outOverallProgress,
+outProjectTransferMark,outProjectAbnormal,outNextWeekplan,outMediumName,outMediumOutsideplanSub,outPreMediumPublishDate,
+outPreMediumOnlineDate,outRealMediumPublishDate,outRealMediumOnlineDate,outMediumRequirement,outMileStageName,outMileProductManual,
+outMileTechnicalProposal,outMileDeploymentPlan,outMileUATTest,outMileProductReg,outMileAutoScript,riskDescribe,riskResponseMeasure,
+stateOfRisk,outSyncStatus,outSyncDesc,outFeedbackUser,outFeedbackTime,outFeedbackView,outFeedbackMark,outFeedbackMark,cbpcode,
+cbpname,cbpname,govDept,outDemander,outBearCompany,outPlanStartDate,outPlanEndDate,outProjectStatus,outSubProjectName,inProjectName,
+inProjectpm,inProjectCode,inProjectDept,inProjectMake,inProjectPlanStart,inProjectPlanEnd,inProjectStage';

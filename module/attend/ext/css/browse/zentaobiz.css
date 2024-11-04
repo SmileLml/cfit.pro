@@ -1,0 +1,4 @@
+.main .panel-heading{background-color:#fff;}
+.main .table{background-color:#fff;}
+.main .legend{background-color:#fff;}
+.legend .attend-trip, .legend .attend-egress{display:none;}

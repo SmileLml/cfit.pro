@@ -1,0 +1,13 @@
+##ignore this file##
+*.txt
+*.zip
+.ztaccess
+.idea/
+config/my.php
+tmp/log/**
+tmp/model/**
+.idea
+.idea/workspace.xml
+.vscode/
+.php-cs-fixer.*
+config/license/**

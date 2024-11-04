@@ -1,0 +1,131 @@
+*/3 * * * * cd /var/www/zentao/cli/ && /usr/bin/php ./reviewManageAllOwner.php >> /var/log/nginx/cronerr.log
+#0 2 * * * cd /var/www/zentao/cli/ && /usr/bin/php ./demandProblemSolvedTime.php >> /var/log/nginx/cronerr.log
+*/2 * * * * cd /var/www/zentao/cli/ && /usr/bin/php ./outwardDeliveryPush.php >> /var/log/nginx/cronerr.log
+0 2 1 * * cd /var/www/zentao/cli/ && /usr/bin/php ./removeLogDir.php >> /var/log/nginx/cronerr.log
+0 3 * * * rm -rf /var/www/zentao/www/data/upload/files/*
+*/5 * * * * cd /var/www/zentao/cli/ && /usr/bin/php ./repushProblemFeedbacks.php >> /var/log/nginx/cronerr.log
+#每1小时执行一次状态联动
+0 */1 * * * cd /var/www/zentao/cli/ && /usr/bin/php ./changeDemandStatus.php  >>/var/log/nginx/cronerr.log
+
+*/5 * * * * cd /var/www/zentao/cli/ && /usr/bin/php ./modifyPush.php >>/var/log/nginx/cronerr.log
+0 8 * * 1-5 cd /var/www/zentao/cli/ && /usr/bin/php ./datamanagementRemind.php >>/var/log/nginx/cronerr.log
+0 2 1 * * cd /var/www/zentao/cli/ && /usr/bin/php ./destroyInfoqzPush.php >>/var/log/nginx/cronerr.log
+
+#* 1-2 * * * /usr/bin/curl http://10.128.68.24/user-getLdapDeptUser.html
+
+#每天早上1点执行，金信生产变更单的流程状态为“变更成功”和“部分成功”时，需要将该变更单关联的“项目-发布”状态流转为“待打基线” wangjiurong
+0 1 * * * /usr/bin/curl http://10.128.68.24/modify-syncReleaseInfo.html
+#每天早上1点执行，清总生产变更单的流程状态为“变更成功”和“部分成功”时，需要将该变更单关联的“项目-发布”状态流转为“待打基线” wangjiurong
+0 1 * * * /usr/bin/curl http://10.128.68.24/modifycncc-syncReleaseInfo.html
+#每天早上1点执行，金信投产移交单的流程状态为“投产成功”或“部分成功”时，需要将该投产单关联的“项目-发布”状态流转为“待合并代码”
+0 1 * * * /usr/bin/curl http://10.128.68.24/putProduction-syncReleaseInfo.html
+#每4小时刷新一下度量报表的最新评审数据 xiangyang
+0 */4 * * * /usr/bin/curl http://10.128.68.24/report-refreshReport.html
+#每天早上2点执行 提前一天将明天截止确认参会的评审流转状态到待反馈清总 xiangyang
+0 2 * * * /usr/bin/curl http://10.128.68.24/reviewqz-updateDealUser.html
+#每4小时更新问题池内部反馈是否超时
+0 */4 * * * cd /var/www/zentao/cli/ && /usr/bin/php ./changeProblemOverDateInside.php >>/var/log/nginx/cronerr.log
+#每4小时更新需求池反馈是否超时
+0 */4 * * * cd /var/www/zentao/cli/ && /usr/bin/php ./updateRequirementIfOverDate.php >>/var/log/nginx/cronerr.log
+#每4小时更新需求池条目交付是否超时
+0 */1 * * * cd /var/www/zentao/cli/ && /usr/bin/php ./updateDemandDeliveryOver.php >>/var/log/nginx/cronerr.log
+
+#每1分钟发送对外移交
+*/1 * * * * cd /var/www/zentao/cli/ && /usr/bin/php ./sectransferPush.php >> /var/log/nginx/cronerr.log
+#每天4点将过期的单子状态设置为已关闭
+0 4 * * * cd /var/www/zentao/cli/ && /usr/bin/php ./secondOrderChange.php >> /var/log/nginx/cronerr.log
+#每十分钟同步一次外部周报
+*/10 * * * * cd /var/www/zentao/cli/ && /usr/bin/php ./outWeeklyreportPushQZ.php >> /var/log/nginx/cronerr.log
+
+#每十分钟生成一次外部周报
+*/10 * * * * cd /var/www/zentao/cli/ && /usr/bin/php ./outWeeklyreportGenerate.php >> /var/log/nginx/cronerr.log
+#每年执行一次 更新年度计划 结转状态 暂时注释掉，待业务方逻辑明确后 再定是否打开
+#00 00 1 1 * cd /var/www/zentao/cli/ && /usr/bin/php ./projectplanUpDelayPreYear.php >> /var/log/nginx/cronerr.log
+
+#每天8:40发送需求池、问题池超时提醒邮件
+40 8 * * * cd /var/www/zentao/cli/ && /usr/bin/php ./sendMailOutTime.php >> /var/log/nginx/cronerr.log
+
+#每周五下午17点发送周报工提醒
+0 17 * * 5 cd /var/www/zentao/cli/ && /usr/bin/php ./workReportWeekly.php >> /var/log/nginx/cronerr.log
+#每个月1号下午17点发送月报工提醒
+0 17 1 * * cd /var/www/zentao/cli/ && /usr/bin/php ./workReportMonth.php >> /var/log/nginx/cronerr.log
+#每天17点发送授权管理即将到期的邮件
+0 17 * * * cd /var/www/zentao/cli/ && /usr/bin/php ./sendRemindMail.php >> /var/log/nginx/cronerr.log
+
+#每天凌晨15分刷新需求任务实际实现方式字段
+15 0 * * * cd /var/www/zentao/cli/ && /usr/bin/php ./dealRequirementActualMethodField.php >> /var/log/nginx/cronerr.log
+#*/5 * * * * cd /var/www/zentao/cli/ && /usr/bin/php ./dealRequirementActualMethodField.php >> /var/log/nginx/cronerr.log
+
+#每月1日零点30分统计二线月报
+30 0 1 * * cd /var/www/zentao/cli/ && /usr/bin/php ./monthReport.php >> /var/log/nginx/cronerr.log
+
+
+#每天17点发送授权管理即将到期的邮件
+0 17 * * * cd /var/www/zentao/cli/ && /usr/bin/php ./sendRemindMail.php >> /var/log/nginx/cronerr.log
+
+#每天10点 清总评审触发邮件提醒专家尽快反馈是否参会
+0 10 * * * cd /var/www/zentao/cli/ && /usr/bin/php ./reviewQzMailExpertIsJoinMeeting.php >> /var/log/nginx/cronerr.log
+
+#每天10点 17点 23点 清总评审触发邮件通知接口人推送专家到清总
+0 10 * * * cd /var/www/zentao/cli/ && /usr/bin/php ./reviewQzMailFeedbackQz.php >> /var/log/nginx/cronerr.log
+0 17 * * * cd /var/www/zentao/cli/ && /usr/bin/php ./reviewQzMailFeedbackQz.php >> /var/log/nginx/cronerr.log
+0 23 * * * cd /var/www/zentao/cli/ && /usr/bin/php ./reviewQzMailFeedbackQz.php >> /var/log/nginx/cronerr.log
+
+#每天10点 17点 23点 清总评审自动推送推送专家到清总
+0 10 * * * cd /var/www/zentao/cli/ && /usr/bin/php ./reviewQzAutoFeedbackQz.php >> /var/log/nginx/cronerr.log
+0 17 * * * cd /var/www/zentao/cli/ && /usr/bin/php ./reviewQzAutoFeedbackQz.php >> /var/log/nginx/cronerr.log
+0 23 * * * cd /var/www/zentao/cli/ && /usr/bin/php ./reviewQzAutoFeedbackQz.php >> /var/log/nginx/cronerr.log
+
+#每天10点 超时确认是否参会自动操作未不参会
+0 10 * * * cd /var/www/zentao/cli/ && /usr/bin/php ./reviewQzAutoSetNotJoinMeeting.php >> /var/log/nginx/cronerr.log
+
+#每1分钟发送金信投产
+*/1 * * * * cd /var/www/zentao/cli/ && /usr/bin/php ./putproductionPush.php >> /var/log/nginx/cronerr.log
+
+#每1分钟同步cmdb确认结果
+*/1 * * * * cd /var/www/zentao/cli/ && /usr/bin/php ./cmdbAutoPush.php >> /var/log/nginx/cronerr.log
+
+#每1分钟检测nfs挂载
+#*/1 * * * * cd /var/www/zentao/cli/ && /usr/bin/php ./checkNfs.php >> /var/log/nginx/cronerr.log
+
+
+#计算项目bug图数据 凌晨 1-7点 每分钟执行一次
+* 1-7 * * * /usr/bin/curl http://10.128.68.24/qareport-bugTrendTimer.html
+
+
+#每天早上4点执行，评审超时自动处理
+0 4 * * * cd /var/www/zentao/cli/ && /usr/bin/php ./autoDealReview.php >> /var/log/nginx/cronerr.log
+#每天早上5点执行，评审超时自动处理
+0 5 * * * cd /var/www/zentao/cli/ && /usr/bin/php ./autoDealReview.php >> /var/log/nginx/cronerr.log
+
+#每天早上6点执行，评审超时自动处理发送邮件通知
+0 6 * * * cd /var/www/zentao/cli/ && /usr/bin/php ./autoSendMail.php >> /var/log/nginx/cronerr.log
+
+#每1分钟监控同步单子的状态
+*/5 * * * * cd /var/www/zentao/cli/ && /usr/bin/php ./sendOverTimePushMail.php >> /var/log/nginx/cronerr.log
+
+#每天早上8点执行，需求条目按照需求任务计划完成时间即将超期提醒第一次
+0 8 * * * cd /var/www/zentao/cli/ && /usr/bin/php ./demandRemindToEndMailFirst.php >> /var/log/nginx/cronerr.log
+
+#每天早上8点执行，需求条目按照需求任务计划完成时间即将超期提醒第二次
+0 8 * * * cd /var/www/zentao/cli/ && /usr/bin/php ./demandRemindToEndMailSecond.php >> /var/log/nginx/cronerr.log
+
+#每天早上8点执行，问题单按照计划解决(变更)时间即将超期提醒第一次
+0 8 * * * cd /var/www/zentao/cli/ && /usr/bin/php ./problemRemindToEndMailFirst.php >> /var/log/nginx/cronerr.log
+
+#每天早上8点执行，问题单按照计划解决(变更)时间即将超期提醒第二次
+0 8 * * * cd /var/www/zentao/cli/ && /usr/bin/php ./problemRemindToEndMailSecond.php >> /var/log/nginx/cronerr.log
+
+#每4个小时，问题单是否按计划完成和审核结果字段更新
+0 */4 * * * cd /var/www/zentao/cli/ && /usr/bin/php ./changeProblemCompletePlanAndResult.php >> /var/log/nginx/cronerr.log
+
+#每天早上1点执行，清总缺陷同步或者内转批量通知PM
+0 1 * * * cd /var/www/zentao/cli/ && /usr/bin/php ./defectRemindProjectManager.php >> /var/log/nginx/cronerr.log
+
+#生成季度统计报表，4、7、10、1月份1日凌晨生成季度报告
+30 1 1 1,4,7,10 * cd /var/www/zentao/cli/ && /usr/bin/php ./monthQuarterReport.php >> /var/log/nginx/cronerr.log
+
+#每两个小时获取svn\gitlab\jenkins的权限
+15 */2 * * * cd /var/www/zentao/cli/ && /usr/bin/php ./getgitlabauthorize.php >> /var/log/nginx/cronerr.log
+30 */2 * * * cd /var/www/zentao/cli/ && /usr/bin/php ./getjenkinsauthorize.php >> /var/log/nginx/cronerr.log
+45 */2 * * * cd /var/www/zentao/cli/ && /usr/bin/php ./getsvnauthorize.php >> /var/log/nginx/cronerr.log

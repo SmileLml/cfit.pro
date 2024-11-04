@@ -1,0 +1,6 @@
+#main .container #menuActions{float:right !important;}
+#menuActions .btn-group {margin-right: 10px;}
+#menuActions .btn-toolbar{float:left; position:relative;}
+#pageActions .btn-toolbar{float:left;}
+div.dropdown {display: inline-block;}
+.main-table .table>tbody>tr>td, .main-table .table>thead>tr>th{ white-space: nowrap;overflow:hidden;text-overflow:ellipsis;}

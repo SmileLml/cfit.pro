@@ -1,0 +1,15 @@
+/*.table td {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    word-break: keep-all;
+}*/
+.table td .ellipsis {
+    width: 120px;
+    min-width: 0;
+    text-overflow: ellipsis;
+    overflow: hidden !important;
+    white-space: nowrap;
+    padding-right: 7px;
+
+}

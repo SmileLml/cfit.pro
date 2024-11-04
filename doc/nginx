@@ -1,0 +1,126 @@
+user root;
+
+worker_processes 4;
+
+worker_cpu_affinity 0001 0010 0100 1000;
+
+worker_rlimit_nofile 65535;
+
+
+
+events {
+
+    worker_connections  65535;
+
+}
+
+
+
+http {
+
+    include       mime.types;
+
+    default_type  application/octet-stream;
+
+    sendfile        on;
+
+
+
+    keepalive_timeout  65;
+
+    upstream zentao {
+
+        server 127.0.0.1:9000 weight=10;
+
+
+
+    }
+
+
+
+    server {
+
+        listen       80;
+
+        server_name  127.0.0.1;
+
+        client_max_body_size 2048m;
+
+        root /var/www/zentao/www;
+
+        charset utf-8;
+
+        error_log /var/log/nginx/php-error.log;
+
+		resolver_timeout 60s;
+
+
+
+       location / {
+
+         index  index.html index.htm index.php;
+
+         if (!-e $request_filename) {
+
+           rewrite  ^/(.*)$  /index.php/$1  last;
+
+           break;
+
+         }
+
+       }
+      location ^~ /cfitpms/ {
+           rewrite ^/cfitpms/(.*)$ /$1 last;
+           #index  index.html index.htm index.php;
+           #proxy_pass http://10.127.27.195:8061/;
+        }
+
+       #error_page   500 502 503 504  /50x.html;
+
+       location = /50x.html {
+
+           root   html;
+
+       }
+
+
+
+       location ~ \.php {
+
+         fastcgi_pass zentao;
+
+         fastcgi_index index.php;
+
+         fastcgi_connect_timeout 180;
+
+         fastcgi_read_timeout 600;
+
+         fastcgi_send_timeout 600;
+
+         include fastcgi.conf;
+
+         set $real_script_name $fastcgi_script_name;
+
+
+
+         if ($fastcgi_script_name ~ "^(.+?\.php)(/.+)$") {
+
+           set $real_script_name $1;
+
+           set $path_info $2;
+
+         }
+
+
+
+         fastcgi_param SCRIPT_FILENAME $document_root$real_script_name;
+
+         fastcgi_param SCRIPT_NAME $real_script_name;
+
+         fastcgi_param PATH_INFO $path_info;
+
+       }
+
+    }
+
+}

@@ -1,0 +1,115 @@
+<?php
+$config->productenroll = new stdclass();
+$config->productenroll->editor      = new stdclass();
+$config->productenroll->create      = new stdclass();
+$config->productenroll->edit        = new stdclass();
+$config->productenroll->create->requiredFields = 'productenrollDesc,isPlan,dynacommEn,dynacommCn,versionNum,lastVersionNum,checkDepartment,result,installationNode,softwareProductPatch,softwareCopyrightRegistration,planDistributionTime,planUpTime,platform,reasonFromJinke,introductionToFunctionsAndUses';
+$config->productenroll->edit->requiredFields   = 'productenrollDesc,isPlan,dynacommEn,dynacommCn,versionNum,lastVersionNum,checkDepartment,result,installationNode,softwareProductPatch,softwareCopyrightRegistration,planDistributionTime,planUpTime,platform,reasonFromJinke,introductionToFunctionsAndUses';
+
+$config->productenroll->list = new stdclass();
+$config->productenroll->list->exportFields = 'code,giteeId,productenrollDesc,createdBy,status,createdDepts,relatedTestingRequest,relatedModifycncc,relatedOutwardDelivery,app,
+isPayment,team,problemId,demandId,implementationForm,projectPlanId,dealUserContact,dynacommCn,productLine,CBPprojectId,requirementId,isPlan,planProductName,
+versionNum,lastVersionNum,checkDepartment,result,installationNode,softwareProductPatch,softwareCopyrightRegistration,planDistributionTime,planUpTime,platform,contactEmail,applyTime,
+returnTimes,createdDate,editedBy,editedDate,closedBy,closedDate,closedReason,reasonFromJinke,introductionToFunctionsAndUses,remark,mediaInfo,secondorderId';
+
+/* Search. */
+global $lang;
+$config->productenroll->search['module'] = 'productEnroll';
+$config->productenroll->search['fields']['code']                      = $lang->productenroll->code;
+$config->productenroll->search['fields']['emisRegisterNumber']        = $lang->productenroll->emisRegisterNumber;
+$config->productenroll->search['fields']['giteeId']                   = $lang->productenroll->giteeId;
+$config->productenroll->search['fields']['productenrollDesc']         = $lang->productenroll->productenrollDesc;
+$config->productenroll->search['fields']['createdBy']                 = $lang->productenroll->createdBy;
+$config->productenroll->search['fields']['status']                    = $lang->productenroll->status;
+$config->productenroll->search['fields']['createdDept']               = $lang->productenroll->createdDepts;
+$config->productenroll->search['fields']['relatedTestingRequest']     = $lang->productenroll->relatedTestingRequest;
+$config->productenroll->search['fields']['relatedModifycncc']         = $lang->productenroll->relatedModifycncc;
+$config->productenroll->search['fields']['relatedOutwardDelivery']    = $lang->productenroll->relatedOutwardDelivery;
+$config->productenroll->search['fields']['app']                       = $lang->productenroll->app;
+$config->productenroll->search['fields']['isPayment']                 = $lang->productenroll->isPayment;
+$config->productenroll->search['fields']['team']                      = $lang->productenroll->team;
+$config->productenroll->search['fields']['problemId']                 = $lang->productenroll->problemId;
+$config->productenroll->search['fields']['demandId']                  = $lang->productenroll->demandId;
+$config->productenroll->search['fields']['implementationForm']        = $lang->productenroll->implementationForm;
+$config->productenroll->search['fields']['projectPlanId']             = $lang->productenroll->projectPlanId;
+$config->productenroll->search['fields']['contactTel']                = $lang->productenroll->dealUserContact;
+$config->productenroll->search['fields']['dynacommCn']                = $lang->productenroll->dynacommCn;
+$config->productenroll->search['fields']['productLine']               = $lang->productenroll->productLine;
+$config->productenroll->search['fields']['CBPprojectId']              = $lang->productenroll->CBPprojectId;
+$config->productenroll->search['fields']['requirementId']             = $lang->productenroll->requirementId;
+$config->productenroll->search['fields']['isPlan']                    = $lang->productenroll->isPlan;
+$config->productenroll->search['fields']['planProductName']           = $lang->productenroll->planProductName;
+$config->productenroll->search['fields']['versionNum']                = $lang->productenroll->versionNum;
+$config->productenroll->search['fields']['lastVersionNum']            = $lang->productenroll->lastVersionNum;
+$config->productenroll->search['fields']['checkDepartment']           = $lang->productenroll->checkDepartment;
+$config->productenroll->search['fields']['result']                    = $lang->productenroll->result;
+$config->productenroll->search['fields']['installationNode']          = $lang->productenroll->installationNode;
+$config->productenroll->search['fields']['softwareProductPatch']      = $lang->productenroll->softwareProductPatch;
+$config->productenroll->search['fields']['softwareCopyrightRegistration'] = $lang->productenroll->softwareCopyrightRegistration;
+$config->productenroll->search['fields']['planDistributionTime']      = $lang->productenroll->planDistributionTime;
+$config->productenroll->search['fields']['planUpTime']                = $lang->productenroll->planUpTime;
+$config->productenroll->search['fields']['platform']                  = $lang->productenroll->platform;
+$config->productenroll->search['fields']['contactEmail']              = $lang->productenroll->contactEmail;
+$config->productenroll->search['fields']['applyTime']                 = $lang->productenroll->applyTime;
+$config->productenroll->search['fields']['returnTimes']               = $lang->productenroll->returnTimes;
+$config->productenroll->search['fields']['editedBy']                  = $lang->productenroll->editedBy;
+$config->productenroll->search['fields']['editedDate']                = $lang->productenroll->editedDate;
+$config->productenroll->search['fields']['closedBy']                  = $lang->productenroll->closedBy;
+$config->productenroll->search['fields']['closedDate']                = $lang->productenroll->closedDate;
+$config->productenroll->search['fields']['closedReason']              = $lang->productenroll->closedReason;
+$config->productenroll->search['fields']['reasonFromJinke']           = $lang->productenroll->reasonFromJinke;
+$config->productenroll->search['fields']['introductionToFunctionsAndUses'] = $lang->productenroll->introductionToFunctionsAndUses;
+$config->productenroll->search['fields']['remark']                    = $lang->productenroll->remark;
+$config->productenroll->search['fields']['secondorderId']                    = $lang->productenroll->secondorderId;
+
+
+$config->productenroll->search['params']['code']                      = array('operator' => 'include', 'control' => 'input', 'values' => '');
+$config->productenroll->search['params']['emisRegisterNumber']        = array('operator' => 'include', 'control' => 'input', 'values' => '');
+$config->productenroll->search['params']['giteeId']                   = array('operator' => 'include', 'control' => 'input', 'values' => '');
+$config->productenroll->search['params']['productenrollDesc']         = array('operator' => 'include', 'control' => 'input', 'values' => '');
+$config->productenroll->search['params']['createdBy']                 = array('operator' => '=', 'control' => 'select', 'values' => 'users');
+$config->productenroll->search['params']['status']                    = array('operator' => '=', 'control' => 'select', 'values' => $lang->productenroll->statusList);
+$config->productenroll->search['params']['createdDept']               = array('operator' => 'belong', 'control' => 'select', 'values' => 'depts');
+$config->productenroll->search['params']['relatedTestingRequest']     = array('operator' => 'include', 'control' => 'input', 'values' => '');
+$config->productenroll->search['params']['relatedModifycncc']         = array('operator' => 'include', 'control' => 'input', 'values' => '');
+$config->productenroll->search['params']['relatedOutwardDelivery']    = array('operator' => 'include', 'control' => 'input', 'values' => '');
+$config->productenroll->search['params']['app']                       = array('operator' => 'include', 'control' => 'select', 'values' => '','mulit'=>true);
+$config->productenroll->search['params']['isPayment']                 = array('operator' => 'include', 'control' => 'select', 'values' => ''); 
+$config->productenroll->search['params']['team']                      = array('operator' => 'include', 'control' => 'select', 'values' => '');
+$config->productenroll->search['params']['problemId']                 = array('operator' => 'include', 'control' => 'select', 'values' => '','mulit'=>true);
+$config->productenroll->search['params']['demandId']                  = array('operator' => 'include', 'control' => 'select', 'values' => '','mulit'=>true);
+$config->productenroll->search['params']['implementationForm']        = array('operator' => 'include', 'control' => 'select', 'values' => $lang->productenroll->implementationFormList);
+$config->productenroll->search['params']['projectPlanId']             = array('operator' => 'include', 'control' => 'select', 'values' => '');
+$config->productenroll->search['params']['contactTel']                = array('operator' => 'include', 'control' => 'input', 'values' => '');
+$config->productenroll->search['params']['dynacommCn']                = array('operator' => 'include', 'control' => 'input', 'values' => '');
+$config->productenroll->search['params']['productLine']               = array('operator' => 'include', 'control' => 'select', 'values' => '');
+$config->productenroll->search['params']['CBPprojectId']              = array('operator' => 'include', 'control' => 'select', 'values' => '');
+$config->productenroll->search['params']['requirementId']             = array('operator' => 'include', 'control' => 'select', 'values' => '','mulit'=>true);
+$config->productenroll->search['params']['isPlan']                    = array('operator' => '=', 'control' => 'select', 'values' => $lang->productenroll->isPlanList);
+$config->productenroll->search['params']['planProductName']           = array('operator' => 'include', 'control' => 'input', 'values' => '');
+$config->productenroll->search['params']['versionNum']                = array('operator' => 'include', 'control' => 'input', 'values' => '');
+$config->productenroll->search['params']['lastVersionNum']            = array('operator' => 'include', 'control' => 'input', 'values' => '');
+$config->productenroll->search['params']['checkDepartment']           = array('operator' => '=', 'control' => 'select', 'values' => $lang->productenroll->checkDepartmentList);
+$config->productenroll->search['params']['result']                    = array('operator' => '=', 'control' => 'select', 'values' => $lang->productenroll->resultList);
+$config->productenroll->search['params']['installationNode']          = array('operator' => '=', 'control' => 'select', 'values' => $lang->productenroll->installNodeList);
+$config->productenroll->search['params']['softwareProductPatch']      = array('operator' => '=', 'control' => 'select', 'values' => $lang->productenroll->softwareProductPatchList);
+$config->productenroll->search['params']['softwareCopyrightRegistration'] = array('operator' => '=', 'control' => 'select', 'values' => $lang->productenroll->softwareCopyrightRegistrationList);
+$config->productenroll->search['params']['planDistributionTime']      = array('operator' => '=', 'control' => 'input', 'values' => '', 'class' => 'date');
+$config->productenroll->search['params']['planUpTime']                = array('operator' => '=', 'control' => 'input', 'values' => '', 'class' => 'date');
+$config->productenroll->search['params']['platform']                  = array('operator' => '=', 'control' => 'select', 'values' => $lang->productenroll->appList);
+$config->productenroll->search['params']['contactEmail']              = array('operator' => 'include', 'control' => 'input', 'values' => '');
+$config->productenroll->search['params']['applyTime']                 = array('operator' => '=', 'control' => 'input', 'values' => '', 'class' => 'date');
+$config->productenroll->search['params']['returnTimes']               = array('operator' => '=', 'control' => 'input', 'values' => '');
+$config->productenroll->search['params']['createDate']                = array('operator' => '=', 'control' => 'input', 'values' => '', 'class' => 'date');
+$config->productenroll->search['params']['editedBy']                  = array('operator' => '=', 'control' => 'select', 'values' => 'users');
+$config->productenroll->search['params']['editedDate']                = array('operator' => '=', 'control' => 'input', 'values' => '', 'class' => 'date');
+$config->productenroll->search['params']['closedBy']                  = array('operator' => '=', 'control' => 'select', 'values' => 'users');
+$config->productenroll->search['params']['closedDate']                = array('operator' => '=', 'control' => 'input', 'values' => '', 'class' => 'date');
+$config->productenroll->search['params']['closedReason']              = array('operator' => '=', 'control' => 'select', 'values' => $lang->productenroll->closedReasonList);
+$config->productenroll->search['params']['reasonFromJinke']           = array('operator' => 'include', 'control' => 'input', 'values' => '');
+$config->productenroll->search['params']['introductionToFunctionsAndUses'] = array('operator' => 'include', 'control' => 'input', 'values' => '');
+$config->productenroll->search['params']['remark']                     = array('operator' => 'include', 'control' => 'input', 'values' => '');
+$config->productenroll->search['params']['secondorderId']                  = array('operator' => 'include', 'control' => 'select', 'values' => '');
+
+$config->productenroll->editor = new stdclass();
+$config->productenroll->editor->editreturntimes   = array('id' => 'comment', 'tools' => 'simpleTools');

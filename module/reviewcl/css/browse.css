@@ -1,0 +1,6 @@
+.side-col .tree a.active{font-weight: 700; color: #0c64eb;}
+
+#sidebar .cell{overflow: auto !important;}
+.hide-sidebar #sidebar #sidebarHeader{display: none}
+table td{white-space:nowrap;text-overflow:ellipsis;overflow:hidden;}
+.main-table tbody>tr>td:first-child{padding-left: 8px}

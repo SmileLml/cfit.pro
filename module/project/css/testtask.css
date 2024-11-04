@@ -1,0 +1,6 @@
+.table-group-btns {width: 200px;}
+.table-grouped {box-shadow: none !important;}
+.table-grouped > thead>tr>th.c-id,
+.table-grouped > tbody>tr>td.c-id {padding-left: 15px;}
+.table-grouped > tbody>tr>td {overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+#action-divider{display: inline-block; line-height: 0px; border-right: 2px solid #ddd}

@@ -1,0 +1,17 @@
+FROM registry.cfit.cn/ted/public/php:v7.2.38-nginx
+MAINTAINER lgy
+COPY ./ /var/www/zentao/
+COPY ./cli/crontab /var/spool/cron/root
+RUN  echo ' ' >> /var/spool/cron/root
+# RUN  echo '172.22.8.1 plcm.cncc.cn' >> /etc/hosts
+# RUN echo '*/1 * * * *  /usr/bin/curl http://10.128.68.24/review-crantabtest.html' >/var/spool/cron/root
+# COPY ./cli/crontab /var/spool/cron/root
+# RUN systemctl crond reload
+# RUN systemctl restart crond
+
+#设置时区
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+RUN echo 'Asia/Shanghai' >/etc/timezone
+RUN chmod -R 777 /var/www/zentao/*
+
+EXPOSE 8099

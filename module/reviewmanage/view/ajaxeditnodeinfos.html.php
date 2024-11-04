@@ -1,0 +1,1 @@
+<?php include 'editnodeinfos.html.php';?>

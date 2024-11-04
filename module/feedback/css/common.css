@@ -1,0 +1,14 @@
+.nav-tabs .nav-heading{padding-bottom:2px;padding-top:5px;}
+
+.label-status{background:none; border:1px solid #ddd; font-weight:normal; margin-left:5px;}
+.status-commenting {color: #d2322d;}
+.status-replied    {color: #BD7B46;}
+.status-asked      {color: #E48600;}
+.status-tobug      {color: #8957a1;}
+.status-tostory    {color: #8957a1;}
+
+#subNavbar ul.nav li.active>a{color: #3c4353;font-weight: 400}
+#subNavbar ul.nav li.feedback-active>a{font-weight: 700; color: #0c64eb;}
+
+#feedbackTree .label-action {border-color: #cbd0db; color: #7d8599;background-color:transparent;}
+#feedbackTree .label.label-type {background: #fff; border: 1px solid #7d8599; color:#7d8599; margin-right:5px;}

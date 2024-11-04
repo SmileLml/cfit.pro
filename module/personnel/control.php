@@ -1,0 +1,242 @@
+<?php
+/**
+ * The control file of personnel of ZenTaoPMS.
+ *
+ * @copyright   Copyright 2009-2015 青岛易软天创网络科技有限公司(QingDao Nature Easy Soft Network Technology Co,LTD, www.cnezsoft.com)
+ * @license     ZPL (http://zpl.pub/page/zplv12.html)
+ * @author      Chunsheng Wang <chunsheng@cnezsoft.com>
+ * @package     personnel
+ * @version     $Id$
+ * @link        http://www.zentao.net
+ */
+class personnel extends control
+{
+    /**
+     * Get a list of people who can be accessed.
+     *
+     * @param  int    $programID
+     * @param  int    $deptID
+     * @param  string $browseType
+     * @param  int    $param
+     * @param  int    $recTotal
+     * @param  int    $recPerPage
+     * @param  int    $pageID
+     * @access public
+     * @return void
+     */
+    public function accessible($programID = 0, $deptID = 0, $browseType='browse', $param = 0, $recTotal = 0, $recPerPage = 15, $pageID = 1)
+    {
+        $this->loadModel('program')->setMenu($programID);
+        $this->app->loadLang('user');
+
+        $program = $this->program->getByID($programID);
+
+        /* Set the pager. */
+        $this->app->loadClass('pager', true);
+        $pager = pager::init($recTotal, $recPerPage, $pageID);
+
+        /* Build the search form. */
+        $queryID   = $browseType == 'bysearch' ? (int)$param : 0;
+        $actionURL = $this->createLink('personnel', 'accessible', "pargramID=$programID&deptID=$deptID&browseType=bysearch&quertID=myQueryID");
+        $this->config->personnel->accessible->search['params']['role']['values']   = $this->lang->user->roleList;
+        $this->config->personnel->accessible->search['params']['gender']['values'] = $this->lang->user->genderList;
+        $this->personnel->buildSearchForm($queryID, $actionURL);
+
+        $this->view->title      = $this->lang->personnel->accessible;
+        $this->view->position[] = $this->lang->personnel->accessible;
+
+        $this->view->deptID        = $deptID;
+        $this->view->programID     = $programID;
+        $this->view->acl           = $program->acl;
+        $this->view->recTotal      = $recTotal;
+        $this->view->recPerPage    = $recPerPage;
+        $this->view->pageID        = $pageID;
+        $this->view->pager         = $pager;
+        $this->view->param         = $param;
+        $this->view->browseType    = $browseType;
+        $this->view->personnelList = $this->personnel->getAccessiblePersonnel($programID, $deptID, $browseType, $queryID, $pager);
+        $this->view->deptList      = $this->loadModel('dept')->getOptionMenu();
+        $this->view->dept          = $this->dept->getByID($deptID);
+        $this->view->deptTree      = $this->dept->getTreeMenu($deptID = 0, array(new personnelModel, 'createMemberLink'), $programID);
+
+        $this->display();
+    }
+
+    /**
+     * Access to investable personnel.
+     *
+     * @param  int    $browseType
+     * @param  string $orderBy
+     * @access public
+     * @return void
+     */
+    public function invest($programID = 0)
+    {
+        $this->loadModel('program')->setMenu($programID);
+
+        $this->view->title      = $this->lang->personnel->invest;
+        $this->view->position[] = $this->lang->personnel->invest;
+        $this->view->investList = $this->personnel->getInvest($programID);
+
+        $this->display();
+    }
+
+    /**
+     * Get white list personnel.
+     *
+     * @param  int    $objectID
+     * @param  string $module     personnel|program|project|product
+     * @param  string $objectType program|project|product|sprint
+     * @param  string $orderby
+     * @param  int    $recTotal
+     * @param  int    $recPerPage
+     * @param  int    $pageID
+     * @param  int    $programID
+     * @param  string $from       project|program|programproject
+     * @access public
+     * @return void
+     */
+    public function whitelist($objectID = 0, $module = 'personnel', $objectType = 'program', $orderBy = 'id_desc', $recTotal = 0, $recPerPage = 20, $pageID = 1, $programID = 0, $from = '')
+    {
+        if($this->app->openApp == 'program')
+        {
+            $this->loadModel('program')->setMenu($objectID);
+        }
+        else if($this->app->openApp == 'project')
+        {
+            $this->loadModel('project')->setMenu($objectID);
+        }
+
+        /* Load lang and set session. */
+        $this->app->loadLang('user');
+        $this->app->session->set('whitelistList', $this->app->getURI(true), $this->app->openApp);
+
+        /* Load pager. */
+        $this->app->loadClass('pager', true);
+        $pager = pager::init($recTotal, $recPerPage, $pageID);
+
+        /* Set back link. */
+        $goback = $this->session->projectList ? $this->session->projectList : $this->createLink('program', 'whitelist', "projectID=$objectID");
+        if($from == 'program')  $goback = $this->createLink('program', 'browse');
+        if($from == 'programproject') $goback = $this->session->programProject ? $this->session->programProject : $this->createLink('program', 'project', "programID=$programID");
+
+        $this->view->title      = $this->lang->personnel->whitelist;
+        $this->view->position[] = $this->lang->personnel->whitelist;
+
+        $this->view->pager     = $pager;
+        $this->view->objectID  = $objectID;
+        $this->view->objectType  = $objectType; //类型
+        $this->view->whitelist = $this->personnel->getWhitelist($objectID, $objectType, $orderBy, $pager);
+        $this->view->depts     = $this->loadModel('dept')->getOptionMenu();
+        $this->view->module    = $module;
+        $this->view->goback    = $goback;
+        $this->view->programID = $programID;
+        $this->view->from      = $from;
+        $this->view->orderBy    = $orderBy;
+        $this->view->recPerPage    = $recPerPage;
+        $this->view->pageID    = $pageID;
+        $this->view->from      = $from;
+
+        $this->display();
+    }
+
+    /**
+     * Adding users to the white list.
+     *
+     * @param  int     $objectID
+     * @param  int     $deptID
+     * @param  string  $objectType  program|project|product|sprint
+     * @param  string  $module
+     * @param  int     $programID
+     * @param  string  $from        project|program|programproject
+     * @access public
+     * @return void
+     */
+    public function addWhitelist($objectID = 0, $deptID = 0, $objectType = 'program', $module = 'personnel', $programID = 0, $from = '')
+    {
+        if($this->app->openApp == 'program')
+        {
+            $this->loadModel('program')->setMenu($objectID);
+        }
+        else if($this->app->openApp == 'project')
+        {
+            $this->loadModel('project')->setMenu($objectID);
+        }
+
+        $this->app->loadLang('execution');
+
+        if($_POST)
+        {
+            $this->personnel->addWhitelist($objectType, $objectID);
+            if(dao::isError()) $this->send(array('result' => 'fail', 'message' => $this->getError()));
+
+            $locateLink = $this->session->whitelistList ? $this->session->whitelistList : $this->createLink($module, 'whitelist', "objectID=$objectID");
+            $openApp = $module == 'program' ? ($from == 'project' || $from == 'my' ? '#open=project' : '#open=program') : '';
+            $this->send(array('result' => 'success', 'message' => $this->lang->saveSuccess, 'locate' => $locateLink . $openApp));
+        }
+
+        $this->loadModel('dept');
+        $deptUsers = empty($deptID) ? array() : $this->dept->getDeptUserPairs($deptID);
+
+        $this->view->title      = $this->lang->personnel->addWhitelist;
+        $this->view->position[] = $this->lang->personnel->addWhitelist;
+
+        $this->view->objectID   = $objectID;
+        $this->view->objectType = $objectType;
+        $this->view->module     = $module;
+        $this->view->deptID     = $deptID;
+        $this->view->deptUsers  = $deptUsers;
+        $this->view->whitelist  = $this->personnel->getWhitelist($objectID, $objectType);
+        $this->view->depts      = $this->dept->getOptionMenu();
+        $this->view->users      = $this->loadModel('user')->getPairs('noclosed|nodeleted');
+        $this->view->dept       = $this->dept->getByID($deptID);
+        $this->view->programID  = $programID;
+        $this->view->from       = $from;
+
+        $this->display();
+    }
+
+    /*
+     * Removing users from the white list.
+     *
+     * @param  int     $id
+     * @param  string  $confirm
+     * @access public
+     * @return void
+     */
+    public function unbindWhitelist($id = 0, $confirm = 'no')
+    {
+        if($confirm == 'no')
+        {
+            die(js::confirm($this->lang->personnel->confirmDelete, inLink('unbindWhitelist',"id=$id&confirm=yes")));
+        }
+        else
+        {
+            $acl = $this->dao->select('*')->from(TABLE_ACL)->where('id')->eq($id)->fetch();
+
+//            if($acl->reason == 1001 )//立项领导白名单 todo 逻辑待定
+//            {
+//                echo js::alert('立项领导白名单不能删除');
+//                die(js::reload('parent'));
+//            }
+            if(empty($acl)) die(js::reload('parent'));
+            $objectID   = $acl->objectID;
+            $objectType = $acl->objectType;
+            $account = $acl->account;
+
+            $objectTable  = $acl->objectType == 'product' ? TABLE_PRODUCT : TABLE_PROJECT;
+            $whitelist    = $this->dao->select('whitelist')->from($objectTable)->where('id')->eq($acl->objectID)->fetch('whitelist');
+            $newWhitelist = str_replace(',' . $acl->account, '', $whitelist);
+            $this->dao->update($objectTable)->set('whitelist')->eq($newWhitelist)->where('id')->eq($acl->objectID)->exec();
+            $this->dao->delete()->from(TABLE_ACL)->where('id')->eq($id)->exec();
+
+            if($acl->objectType == 'product') $this->personnel->deleteProgramWhitelist($acl->objectID, $acl->account);
+            if($acl->objectType == 'sprint')  $this->personnel->deleteProjectWhitelist($acl->objectID, $acl->account);
+
+            //操作权限
+            $this->loadModel('user')->updateUserView($objectID, $objectType, array($account));
+
+            die(js::reload('parent'));
+        }
+    }
+}

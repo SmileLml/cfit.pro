@@ -1,0 +1,56 @@
+.c-protransferDesc{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    word-break: keep-all;
+}
+.c-publish {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    word-break: keep-all;
+}
+
+.table td .ellipsis {
+    width: 120px;
+    min-width: 0;
+    text-overflow: ellipsis;
+    overflow: hidden !important;
+    white-space: nowrap;
+    padding-right: 7px;
+}
+
+.c-inproject{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    word-break: keep-all;
+}
+
+.c-app{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    word-break: keep-all;
+}
+
+.c-department{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    word-break: keep-all;
+}
+
+.c-createdDate{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    word-break: keep-all;
+}
+
+.c-reason{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    word-break: keep-all;
+}

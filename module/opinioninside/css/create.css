@@ -1,0 +1,5 @@
+.input-group-addon {min-width: 100px;}
+.table-form>tbody>tr>th {
+    /*业务需求联系人不换行*/
+    width: 106px;
+}

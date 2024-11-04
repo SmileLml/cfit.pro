@@ -1,0 +1,97 @@
+<?php
+$lang->maillog->common      = '邮件日志';
+$lang->maillog->browse      = '日志列表';
+$lang->maillog->export      = '导出数据';
+$lang->maillog->exportName  = '邮件日志';
+$lang->maillog->log         = '邮件日志';
+$lang->maillog->code         = '相关单号';
+$lang->maillog->id          = 'ID';
+$lang->maillog->url         = '请求地址';
+$lang->maillog->objectType  = '对象类型';
+$lang->maillog->objectId    = '对象ID';
+$lang->maillog->purpose     = '用途';
+$lang->maillog->requestType = '请求方式';
+$lang->maillog->status      = '状态';
+$lang->maillog->params      = '参数';
+$lang->maillog->response    = '响应';
+$lang->maillog->createdDate = '发送日期';
+$lang->maillog->details     = '详情';
+$lang->maillog->reload      = '重试';
+$lang->maillog->search      = '搜索';
+
+$lang->maillog->confirmReload  = '确定重新发起请求？';
+$lang->maillog->notPostRequest = '请求方式需要为POST方式';
+$lang->maillog->parameterEmpty = 'POST请求参数为空';
+
+$lang->maillog->objectTypeList                = array();
+$lang->maillog->objectTypeList['opinion']     = '需求意向';
+$lang->maillog->objectTypeList['demand']      = '需求条目';
+$lang->maillog->objectTypeList['requirement'] = '需求任务';
+$lang->maillog->objectTypeList['deleted']     = '删除对象';
+$lang->maillog->objectTypeList['infoGain']    = '数据获取';
+$lang->maillog->objectTypeList['infoFix']     = '数据修正';
+$lang->maillog->objectTypeList['modify']      = '金信交付';
+$lang->maillog->objectTypeList['secondorder']      = '任务工单';
+$lang->maillog->objectTypeList['projectplan']      = '年度计划';
+$lang->maillog->objectTypeList['sectransfer']      = '对外移交-项目移交';
+$lang->maillog->objectTypeList['iwfp']      = '智能流程平台';
+
+$lang->maillog->purposeList                      = array();
+$lang->maillog->purposeList['createDemand']      = '创建/更新需求意向';
+$lang->maillog->purposeList['createRequirement'] = '创建/更新需求任务';
+$lang->maillog->purposeList['feedback']          = '提交反馈单';
+$lang->maillog->purposeList['change']            = '变更反馈单';
+$lang->maillog->purposeList['review']            = '接收评审结果';
+$lang->maillog->purposeList['deleted']           = '删除需求意向|条目';
+$lang->maillog->purposeList['syncToCenter']      = '同步到总中心';
+$lang->maillog->purposeList['pushModfiyInitiate']      = '金信生产变更单发起';
+$lang->maillog->purposeList['modifyreturn']      = '金信生产变更单退回';
+$lang->maillog->purposeList['pushModfiyCommit']      = '金信生产变更单提交';
+$lang->maillog->purposeList['pushModfiyClose']      = '金信生产变更单关闭';
+$lang->maillog->purposeList['modifyfeedback']      = '金信生产变更单反馈';
+$lang->maillog->purposeList['modifycomplete']      = '金信生产变更单完成';
+$lang->maillog->purposeList['requirementChange']      = '需求变更单';
+$lang->maillog->purposeList['pushProblemComment']     = '问题单当前进展推送';
+$lang->maillog->purposeList['sendTaskOrder']      = '清总同步任务工单';
+$lang->maillog->purposeList['sendJXTaskOrder']      = '金信同步任务工单';
+$lang->maillog->purposeList['sendTaskOrderStatus']      = '清总同步任务工单状态';
+$lang->maillog->purposeList['sendJXTaskOrderStatus']      = '金信同步任务工单状态';
+$lang->maillog->purposeList['secondorderFeedback']      = '任务工单反馈';
+$lang->maillog->purposeList['sectransfersync']      = '项目移交同步';
+$lang->maillog->purposeList['handoverBack']      = '项目移交清总同步状态';
+$lang->maillog->purposeList['pushProblemStatus']    = '问题单反馈单状态';
+$lang->maillog->purposeList['startWorkFlow']    = '发起流程';
+$lang->maillog->purposeList['getButtonList']    = '获取授权按钮';
+$lang->maillog->purposeList['completeTaskWithClaim']    = '签收并处理任务';
+$lang->maillog->purposeList['getToDoTaskList']    = '获取待办/已办列表';
+$lang->maillog->purposeList['listApproveLog']    = '审批日志';
+$lang->maillog->purposeList['getFreeJumpNodeList']    = '获取可以退回的节点';
+$lang->maillog->purposeList['freeJump']    = '自由跳转';
+$lang->maillog->purposeList['withDraw']    = '撤回';
+$lang->maillog->purposeList['addSignTask']    = '加签';
+$lang->maillog->purposeList['changeAssigneek']    = '委派';
+$lang->maillog->purposeList['queryProcessTrackImage']    = '查看流程运行轨迹图';
+$lang->maillog->purposeList['pushModifycnccyClose']      = '清总生产变更单关闭';
+
+$lang->maillog->statusList = array();
+$lang->maillog->statusList['1']    = '成功';
+$lang->maillog->statusList['2']    = '失败';
+
+$lang->maillog->responseCodeList = array();
+$lang->maillog->responseCodeList['1001'] = '';
+$lang->maillog->responseCodeList['1002'] = '';
+$lang->maillog->responseCodeList['1003'] = '';
+$lang->maillog->responseCodeList['1004'] = '';
+
+$lang->maillog->userList = array();
+$lang->maillog->userList['user'] = '';
+
+$lang->maillog->title        = '邮件标题';
+$lang->maillog->content      = '邮件内容';
+$lang->maillog->toList       = '收件人';
+$lang->maillog->ccList       = '抄送人';
+$lang->maillog->createdBy    = '发件人';
+$lang->maillog->userinfo     = '用户信息';
+$lang->maillog->errorinfo    = '失败原因';
+$lang->maillog->emails       = '用户信息';
+$lang->maillog->error       = '失败原因';

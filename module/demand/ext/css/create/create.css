@@ -1,0 +1,7 @@
+/*.demandtip{display:inline-block;padding: 6px 12px}*/
+.demandtip{display:inline-block;position: absolute;width: 663px;height:33px;color: lightslategray;margin-left: -40px}
+.demandtip span{position: absolute;bottom: 24px;width:100%;text-align: center;}
+/*.bootbox.modal .modal-dialog {*/
+/*    width: 550px;*/
+/*    line-height: 1.7;*/
+}

@@ -1,0 +1,10 @@
+.select-7 {width:70px}
+.selectActive{border:2px solid #090;}
+
+.outer.hide-side .side .panel{display:none;}
+.outer.hide-side .side .side-handle{height:32px;}
+#effortForm{overflow-y:auto;}
+
+.side-col{width: 300px;}
+#sidebar > .cell{width: 280px;}
+.hide-sidebar #sidebar > .cell{display: none;}

@@ -1,0 +1,24 @@
+<?php
+$config->action->objectNameFields['opinion']        = 'name';
+$config->action->objectNameFields['requirement']    = 'name';
+$config->action->objectNameFields['application']    = 'name';
+$config->action->objectNameFields['projectplan']    = 'name';
+$config->action->objectNameFields['deptorder']    = 'code';
+$config->action->objectNameFields['problem']        = 'code';
+$config->action->objectNameFields['demand']         = 'title';
+$config->action->objectNameFields['processimprove'] = 'id';
+$config->action->objectNameFields['info']           = 'code';
+$config->action->objectNameFields['infoqz']         = 'code';
+$config->action->objectNameFields['duty']           = 'type';
+$config->action->objectNameFields['modify']         = 'code';
+$config->action->objectNameFields['modifycncc']     = 'code';
+$config->action->objectNameFields['change']         = 'code';
+$config->action->objectNameFields['outsideplan']    = 'name';
+$config->action->objectNameFields['reviewmeeting']  = 'meetingCode';
+$config->action->objectNameFields['secondorder']  = 'code';
+$config->action->objectNameFields['sectransfer']  = 'protransferDesc';
+$config->action->objectNameFields['datamanagement']  = 'code';
+$config->action->objectNameFields['osspchange'] = 'id';
+$config->action->objectNameFields['component'] = 'name';
+$config->action->objectNameFields['putproduction'] = 'code';
+$config->action->objectNameFields['demandcollection'] = 'title';

@@ -1,0 +1,7 @@
+.side-col{width: 300px;}
+#sidebar > .cell{width: 280px;}
+.hide-sidebar #sidebar > .cell{display: none;}
+
+#showdata .table > thead{background: #f1f1f1;}
+#diary-title li{overflow:hidden; text-overflow:ellipsis;}
+.form-group .checkbox-inline{width: 280px}

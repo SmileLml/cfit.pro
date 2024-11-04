@@ -1,0 +1,2 @@
+-- ALTER TABLE `zt_problem`
+--     ADD `ccUser` varchar(20) DEFAULT NULL COMMENT '通知人（二线专员）',

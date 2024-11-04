@@ -1,0 +1,1 @@
+$('#version').closest('div').remove();

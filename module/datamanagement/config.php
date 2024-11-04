@@ -1,0 +1,63 @@
+<?php
+/* Search. */
+global $lang;
+$config->datamanagement->search['module'] = 'datamanagement';
+$config->datamanagement->search['fields']['code']                     = $lang->datamanagement->code;
+$config->datamanagement->search['fields']['type']                     = $lang->datamanagement->type;
+$config->datamanagement->search['fields']['desensitizeType']          = $lang->datamanagement->desensitizeType;
+$config->datamanagement->search['fields']['useDeadline']                    = $lang->datamanagement->useDeadline;
+$config->datamanagement->search['fields']['isDesensitize']                        = $lang->datamanagement->isDesensitize;
+$config->datamanagement->search['fields']['infoCode']                    = $lang->datamanagement->infoCode;
+$config->datamanagement->search['fields']['source']                    = $lang->datamanagement->source;
+$config->datamanagement->search['fields']['createdBy']                    = $lang->datamanagement->createdBy;
+$config->datamanagement->search['fields']['createdDate']                    = $lang->datamanagement->createdDate;
+$config->datamanagement->search['fields']['delayedBy']                        = $lang->datamanagement->delayedBy;
+$config->datamanagement->search['fields']['delayDeadline']                        = $lang->datamanagement->delayDeadline;
+$config->datamanagement->search['fields']['destroyedBy']                        = $lang->datamanagement->destroyedBy;
+$config->datamanagement->search['fields']['destroyedDate']                        = $lang->datamanagement->destroyedDate;
+$config->datamanagement->search['fields']['reviewedBy']                        = $lang->datamanagement->reviewedBy;
+$config->datamanagement->search['fields']['reviewedDate']                        = $lang->datamanagement->reviewedDate;
+$config->datamanagement->search['fields']['actualEndTime']                        = $lang->datamanagement->actualEndTime;
+$config->datamanagement->search['fields']['desc']                        = $lang->datamanagement->desc;
+$config->datamanagement->search['fields']['reason']                        = $lang->datamanagement->reason;
+
+$config->datamanagement->search['params']['code']                       = array('operator' => 'include', 'control' => 'input', 'values' => '');
+$config->datamanagement->search['params']['type']                       = array('operator' => '=', 'control' => 'select', 'values' => array('' => '')+$lang->datamanagement->typeList);
+$config->datamanagement->search['params']['desensitizeType']                       = array('operator' => '=', 'control' => 'select', 'values' => array('' => '')+$lang->datamanagement->desensitizeTypeList);
+$config->datamanagement->search['params']['useDeadline']                       = array('operator' => '=', 'control' => 'input', 'values' => '', 'class' => 'date');
+$config->datamanagement->search['params']['isDesensitize']                       = array('operator' => '=', 'control' => 'select', 'values' => array('' => '')+$lang->datamanagement->isDesensitizeList);
+$config->datamanagement->search['params']['infoCode']                       = array('operator' => 'include', 'control' => 'input', 'values' => '');
+$config->datamanagement->search['params']['source']                       = array('operator' => 'include', 'control' => 'select', 'values' => array(0 => '')+$lang->datamanagement->sourceList);
+$config->datamanagement->search['params']['createdBy']                       = array('operator' => 'include', 'control' => 'select', 'values' => 'users');
+$config->datamanagement->search['params']['createdDate']                       = array('operator' => '=', 'control' => 'input', 'values' => '', 'class' => 'date');
+$config->datamanagement->search['params']['delayedBy']                       = array('operator' => 'include', 'control' => 'select', 'values' => 'users');
+$config->datamanagement->search['params']['delayDeadline']                       = array('operator' => '=', 'control' => 'input', 'values' => '', 'class' => 'date');
+$config->datamanagement->search['params']['destroyedBy']                       = array('operator' => 'include', 'control' => 'select', 'values' => 'users');
+$config->datamanagement->search['params']['destroyedDate']                       = array('operator' => '=', 'control' => 'input', 'values' => '', 'class' => 'date');
+$config->datamanagement->search['params']['reviewedBy']                       = array('operator' => 'include', 'control' => 'select', 'values' => 'users');
+$config->datamanagement->search['params']['reviewedDate']                       = array('operator' => '=', 'control' => 'input', 'values' => '', 'class' => 'date');
+$config->datamanagement->search['params']['actualEndTime']                       = array('operator' => '=', 'control' => 'input', 'values' => '', 'class' => 'date');
+$config->datamanagement->search['params']['desc']                       = array('operator' => 'include', 'control' => 'input', 'values' => '');
+$config->datamanagement->search['params']['reason']                       = array('operator' => 'include', 'control' => 'input', 'values' => '');
+
+$config->datamanagement->list = new stdclass();
+$config->datamanagement->list->exportFields = 'code,type,desensitizeType,useDeadline,isDesensitize,infoCode,source,createdBy,createdDate,delayedBy,delayDeadline,destroyedBy,destroyedDate,
+reviewedBy,reviewedDate,actualEndTime,desc,reason';
+$config->datamanagement->editor = new stdclass();
+$config->datamanagement->delay = new stdclass();
+$config->datamanagement->delayreview = new stdclass();
+$config->datamanagement->destroyreview = new stdClass();
+$config->datamanagement->destroyreview->pass = new stdClass();
+$config->datamanagement->destroyreview->reject = new stdClass();
+$config->datamanagement->destroy = new stdclass();
+$config->datamanagement->editor->destroyreview = array('id' => 'comment', 'tools' => 'simpleTools');
+$config->datamanagement->editor->destroyexecution = array('id' => 'comment', 'tools' => 'simpleTools');
+$config->datamanagement->editor->delay = array('id' => 'delayReason,comment', 'tools' => 'simpleTools');
+$config->datamanagement->editor->review = array('id' => 'reviewOpinion,comment,rejectReason', 'tools' => 'simpleTools');
+$config->datamanagement->editor->readmessage = array('id' => 'comment', 'tools' => 'simpleTools');
+$config->datamanagement->editor->destroy = array('id' => 'destroyReason,comment', 'tools' => 'simpleTools');
+$config->datamanagement->delay->requiredFields = 'delayReason,useDeadline';
+$config->datamanagement->delayreview->requiredFields = 'result,reviewOpinion';
+$config->datamanagement->destroy->requiredFields = 'destroyReason';
+$config->datamanagement->destroyreview->pass->requiredFields = 'result,executor,checker';
+$config->datamanagement->destroyreview->reject->requiredFields = 'result,rejectReason';

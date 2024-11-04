@@ -1,0 +1,4 @@
+.dropup .search-list .search-box+.list-group {
+    height: 110px;
+    padding-top: 0;
+}

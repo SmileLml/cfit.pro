@@ -1,0 +1,49 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 4643901 */
+  src: url('iconfont.woff2?t=1725959314908') format('woff2'),
+       url('iconfont.woff?t=1725959314908') format('woff'),
+       url('iconfont.ttf?t=1725959314908') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-butongguo:before {
+  content: "\e633";
+}
+
+.icon-shenpi:before {
+  content: "\e665";
+}
+
+.icon-ceshishenqing:before {
+  content: "\eb61";
+}
+
+.icon-ceshi:before {
+  content: "\e629";
+}
+
+.icon-tongbu:before {
+  content: "\e63e";
+}
+
+.icon-tongbu1:before {
+  content: "\e630";
+}
+
+.icon-quanxian:before {
+  content: "\e63f";
+}
+
+.icon-jiaofu:before {
+  content: "\e600";
+}
+
+
+getIsQualityGate

@@ -1,0 +1,9 @@
+th {
+    display: table-cell;
+    vertical-align: inherit;
+    font-weight: normal;
+    text-align: -internal-center;
+}
+table th {
+    padding: 8px 10px;
+}

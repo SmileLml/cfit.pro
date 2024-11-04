@@ -1,0 +1,67 @@
+#root 账号下 输入 crontab -e 输入下面命令 /var/www/cfit/ 是禅道根目录 根据个人形况修改
+#需要执行的php脚本一定要在/var/www/cfit/cli/目录下，错误日志会写入/home/monitor/cronerr.log
+*/1 * * * * cd /var/www/cfit/cli/ && sudo /usr/local/php/bin/php ./outwardDeliveryPush.php >> /home/monitor/cronerr.log
+*/2 * * * * cd /var/www/cfit/cli/ && sudo /usr/local/php/bin/php ./changeDemandStatus.php  >> /home/monitor/cronerr.log
+# 每月1号2点推送清总数据销毁任务
+0 2 1 * * cd /var/www/cfit/cli/ && sudo /usr/local/php/bin/php ./destroyInfoqzPush.php >> /home/monitor/cronerr.log
+# 每周一到周五推送数据使用销毁提醒
+0 8 * * 1-5 cd /var/www/cfit/cli/ && sudo /usr/local/php/bin/php ./datamanagementRemind.php >> /home/monitor/cronerr.log
+#每月1号2点整清理上上月的定时任务日志
+0 2 1 * * cd /var/www/cfit/cli/ && sudo /usr/local/php/bin/php ./removeLogDir.php >> /home/monitor/cronerr.log
+#清总问题反馈失败重试
+*/2 * * * * cd /var/www/cfit/cli/ && sudo /usr/local/php/bin/php ./repushProblemFeedbacks.php >> /home/monitor/cronerr.log
+#每天早上3点整清理介质目录
+0 3 * * * rm -rf /var/www/cfitpms/www/data/upload/files/*
+#每天早上两天执行 解决时间同步
+0 2 * * * cd /var/www/cfit/cli/ && sudo /usr/local/php/bin/php ./demandProblemSolvedTime.php >> /home/monitor/cronerr.log
+#每天早上两点执行，提示评审
+0 2 * * * cd /var/www/cfit/cli/ && sudo /usr/local/php/bin/php ./autoSendMail.php >> /home/monitor/cronerr.log
+#输入qw 保存退出
+#输入 service crond restart (可选重启)
+
+*/5 * * * * cd /var/www/cfit_lgy/cli/ && sudo /usr/local/php/bin/php ./autoSendMail.php >> /home/monitor/cronerr.log
+*/1 * * * * cd /var/www/cfit_lgy/cli/ && sudo /usr/local/php/bin/php ./autoDealReview.php >> /home/monitor/cronerr.log
+#每天早上三点点执行，提示评审
+#0 3 * * * cd /var/www/cfit_lgy/cli/ && sudo /usr/local/php/bin/php ./autoSendMail.php >> /home/monitor/cronerr.log
+#每天早上四点执行，评审超时自动处理
+#0 4 * * * cd /var/www/cfit_lgy/cli/ && sudo /usr/local/php/bin/php ./autoDealReview.php >> /home/monitor/cronerr.log
+
+#每天早上4点执行，评审超时自动处理
+0 4 * * * cd /var/www/zentao/cli/ && /usr/bin/php ./autoDealReview.php >> /var/log/nginx/cronerr.log
+#每天早上5点执行，评审超时自动处理
+0 5 * * * cd /var/www/zentao/cli/ && /usr/bin/php ./autoDealReview.php >> /var/log/nginx/cronerr.log
+
+#每天早上3点执行，评审超时自动处理发送邮件通知
+0 3 * * * cd /var/www/zentao/cli/ && /usr/bin/php ./autoSendMail.php >> /var/log/nginx/cronerr.log
+
+#每天早上1点执行，金信生产变更单的流程状态为“变更成功”和“部分成功”时，需要将该变更单关联的“项目-发布”状态流转为“待打基线” wangjiurong
+0 1 * * * /usr/bin/curl http://10.2.8.93/modify-syncReleaseInfo.html
+#每天早上1点执行，清总生产变更单的流程状态为“变更成功”和“部分成功”时，需要将该变更单关联的“项目-发布”状态流转为“待打基线” wangjiurong
+0 1 * * * /usr/bin/curl http://10.2.8.93/modifycncc-syncReleaseInfo.html
+#每4小时刷新一下度量报表的最新评审数据 xiangyang
+0 */4 * * * /usr/bin/curl http://10.2.8.93/report-refreshReport.html
+
+#每十分钟同步一次外部周报
+*/10 * * * * cd /var/www/zentao/cli/ && sudo /usr/bin/php ./outWeeklyreportPushQZ.php >> /home/monitor/outWeeklyreportPushQZ.log
+#每十分钟生成一次外部周报
+*/10 * * * * cd /var/www/zentao/cli/ && sudo /usr/bin/php ./outWeeklyreportGenerate.php >> /home/monitor/outWeeklyreportGenerate.log
+#每年执行一次 更新年度计划 结转状态 暂时注释掉，待业务方逻辑明确后 再定是否打开
+#00 00 1 1 * cd /var/www/zentao/cli/ && /usr/bin/php ./projectplanUpDelayPreYear.php >> /var/log/nginx/cronerr.log
+
+#每天凌晨15分刷新需求任务实际实现方式字段
+15 0 * * * cd /var/www/zentao/cli/ && /usr/bin/php ./dealRequirementActualMethodField.php >> /var/log/nginx/cronerr.log
+
+#每天10点 清总评审触发邮件提醒专家尽快反馈是否参会
+0 10 * * * cd /var/www/zentao/cli/ && /usr/bin/php ./reviewQzMailExpertIsJoinMeeting.php >> /var/log/nginx/cronerr.log
+
+#每天10点 17点 24点 清总评审触发邮件通知接口人推送专家到清总
+0 10,17,24 * * * cd /var/www/zentao/cli/ && /usr/bin/php ./reviewQzMailFeedbackQz.php >> /var/log/nginx/cronerr.log
+
+#每天10点 17点 24点 清总评审自动推送推送专家到清总
+0 10,17,24 * * * cd /var/www/zentao/cli/ && /usr/bin/php ./reviewQzAutoFeedbackQz.php >> /var/log/nginx/cronerr.log
+
+#每天10点 超时确认是否参会自动操作未不参会
+0 10 * * * cd /var/www/zentao/cli/ && /usr/bin/php ./reviewQzAutoSetNotJoinMeeting.php >> /var/log/nginx/cronerr.log
+
+#每4小时更新需求池条目交付是否超时
+0 */4 * * * cd /var/www/zentao/cli/ && /usr/bin/php ./updateDemandDeliveryOver.php >>/var/log/nginx/cronerr.log

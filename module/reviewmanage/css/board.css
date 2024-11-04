@@ -1,0 +1,121 @@
+.table td {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    word-break: keep-all;
+}
+#c-createdBy .ellipsis{
+    width: 100px;
+}
+.table td .ellipsis {
+    width: 108px;
+    min-width: 0;
+    text-overflow: ellipsis;
+    overflow: hidden !important;
+    white-space: nowrap;
+    padding-right: 7px;
+
+}
+#reviewManageForm .c-createdBy .ellipsis{
+    width: 100px;
+}
+#reviewManageForm .c-createdDept .ellipsis{
+    width: 88px;
+}
+#reviewManage3 .c-createdDept .ellipsis{
+    width: 110px;
+}
+.main-col{
+    position: relative;
+}
+#reviewManageList2Head{
+    position: absolute;
+    top: 0;
+}
+.main-col{
+    position: relative;
+}
+#reviewManageList3Head{
+    position: absolute;
+    top: 0;
+}
+#datatable-reviewManageList {
+
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 270px;
+}
+
+#reviewManageForm {
+
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 270px;
+}
+
+#reviewManage3 {
+
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 270px;
+}
+
+#reviewManageList1 {
+
+    position: relative;
+
+}
+
+.datatable-head{
+
+    position: absolute;
+    z-index: 999;
+    top:0;
+
+}
+.datatable>.scroll-wrapper{
+    position:static!important;
+}
+#reviewManageForm .ellipsis{
+    width: 140px;
+}
+
+
+.datatable-rows{
+    margin-top: 36px;
+}
+#reviewManage3 .c-actions{
+    text-align: left;
+}
+#reviewManage3 .ellipsis{
+    width: 175px;
+}
+#reviewManageForm .c-actions{
+    text-align: center;
+}
+
+.reviewTitle{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    word-break: keep-all;
+}
+.problemTitle {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    word-break: keep-all;
+}
+.change{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space:  nowrap;
+    word-break: keep-all;
+    height: 30px;
+}
+.meetingCode{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    word-break: keep-all;
+}

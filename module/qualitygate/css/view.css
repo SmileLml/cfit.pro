@@ -1,0 +1,6 @@
+.article-content table th {
+    background-color: transparent;
+}
+.table-data tbody>tr>th {
+    color: #0b0f18;
+}
